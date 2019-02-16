@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var debug = require('debug')('router:oauth');
 
-module.exports = function(app, logger) {
+module.exports = function(app, logger, mongo) {
 
     var handler = {
         login: function(req, res, next) {

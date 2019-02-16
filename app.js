@@ -4,8 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 
-const logger =  require('./logger');
-
 // Parse and load environment files (containing ENV variable exports) into Node.js
 // environment, i.e. process.env.
 var env = require('node-env-file');
@@ -15,6 +13,9 @@ try {
     console.log('Warning: .env file not found hope environment is set some other way');
 }
 
+const logger =  require('./logger');
+const mongo =  require('./mongo');
+
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
@@ -22,7 +23,7 @@ var app = express();
 
 var normalizedPath = require("path").join(__dirname, "routes");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
-    require("./routes/" + file)(app, logger);
+    require("./routes/" + file)(app, logger, mongo);
 });
 
 // view engine setup
