@@ -7,16 +7,21 @@ module.exports = function(app, logger, mongo) {
     var handler = {
         login: function(req, res, next) {
             logger.info('bla bla');
-            res.send('respond with a resource');
+            res.render('oauth/index', { title: 'Express', layout: 'login_layout'});
         },
         oauth: function(req, res, next) {
             res.send('respond with a resource');
+            res.render('oauth/index', { title: 'Express' });
         }
     };
 
-    debug('Configured /login url');
+    debug('Configured /oauth/login url');
     /* GET users listing. */
     router.get('/login', handler.login);
+
+    debug('Configured /oauth/oauth url');
+    /* GET users listing. */
+    router.get('/oauth', handler.oauth);
 
     app.use('/oauth', router);
 
