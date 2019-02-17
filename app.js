@@ -1,8 +1,11 @@
 var createError = require('http-errors');
 var express = require('express');
+var session = require('express-session');
+var passport = require('passport');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
+var debug = require('debug')('main:app');
 
 // Parse and load environment files (containing ENV variable exports) into Node.js
 // environment, i.e. process.env.
@@ -14,17 +17,12 @@ try {
 }
 
 const logger =  require('./logger');
-const mongo =  require('./mongo');
+const mongodb =  require('./mongo');
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
 var app = express();
-
-var normalizedPath = require("path").join(__dirname, "routes");
-require("fs").readdirSync(normalizedPath).forEach(function(file) {
-    require("./routes/" + file)(app, logger, mongo);
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,10 +32,20 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// debug('Session', process.env.SESSION_SECRET);
+app.use(session({secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
+
+var normalizedPath = require("path").join(__dirname, "routes");
+require("fs").readdirSync(normalizedPath).forEach(function(file) {
+    require("./routes/" + file)(app, logger, mongodb, passport);
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

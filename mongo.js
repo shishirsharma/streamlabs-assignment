@@ -3,17 +3,15 @@ if (!process.env.MONGODB_URI) {
     process.exit(1);
 }
 
-const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
-
-
+const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(process.env.MONGODB_URI, {useNewUrlParser: true});
 
-var mongodb;
+var mongodb = {};
 
-client.connect(function(err, db) {
+client.connect(function(err) {
     assert.equal(null, err);
-    mongodb=db;
+    mongodb.db = client.db();
 });
 
 module.exports = mongodb;

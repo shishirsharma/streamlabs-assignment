@@ -28,6 +28,11 @@
                  font-size: 3.5rem;
              }
          }
+
+         .button.button--twitch {
+             background-color: #6542a6;
+             border-color: #6542a6;
+         }
         </style>
         <!-- Custom styles for this template -->
         <link rel='stylesheet' href='/stylesheets/signin.css' />
@@ -35,17 +40,23 @@
     <body class="text-center">
         <form class="form-signin">
             <img class="mb-4" src="/images/twitch.svg" alt="" width="72" height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <h1 class="h3 mb-3 font-weight-normal">Welcome to Streamlabs Assignment</h1>
+            <h1 class="h5 mb-3 font-weight-normal">Please sign in</h1>
+            <!-- <label for="inputEmail" class="sr-only">Email address</label>
+                 <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                 <label for="inputPassword" class="sr-only">Password</label>
+                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                 <div class="checkbox mb-3">
+                 <label>
+                 <input type="checkbox" value="remember-me"> Remember me
+                 </label>
+                 </div> -->
+
+            <button id="connect-with-twitch" class="btn btn-lg btn-primary btn-block button login-button button--twitch" data-platform="twitch">
+                <i class="fab fa-twitch"></i>Log in with Twitch
+            </button>
+
+            <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button> -->
             <p class="mt-5 mb-3 text-muted">&copy; 2019-2019</p>
         </form>
     </body>
