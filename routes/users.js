@@ -8,6 +8,10 @@ module.exports = function(app, logger, mongo) {
         res.send('respond with a resource');
     });
 
+    router.get('/subscribe', function(req, res, next) {
+        res.send('respond with a resource');
+    });
+
     app.use('/users', router);
 
     //module.exports = router;

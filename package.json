@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
     "debug": "^4.1.1",
     "express": "~4.16.0",
     "express-session": "^1.15.6",
@@ -19,8 +20,10 @@
     "node-env-file": "^0.1.8",
     "passport": "^0.4.0",
     "passport-oauth": "^1.0.0",
+    "query-string": "^6.2.0",
     "request": "^2.88.0",
     "simple-oauth2": "^2.2.1",
+    "twitch-toolkit": "^0.0.10",
     "winston": "^3.2.1"
   },
   "devDependencies": {
